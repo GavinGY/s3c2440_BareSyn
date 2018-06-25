@@ -23,8 +23,8 @@ CPPFLAGS   	:= -nostdinc -I${DIR_INC}
 export 	CC LD AR OBJCOPY OBJDUMP DIR_INC CFLAGS CPPFLAGS
 
 ${BIN_TARGET}:${OBJ}
-	${LD} -TBareSyn.lds -o ${DIR_BIN}/${TARGET}_elf $^
-	#objs/interrupt.o objs/serial.o objs/lcddrv.o objs/framebuffer.o objs/lcdlib.o objs/main.o lib/libc.a
+	#${LD} -TBareSyn.lds -o ${DIR_BIN}/${TARGET}_elf $^
+	${LD} -TBareSyn.lds -o ${DIR_BIN}/${TARGET}_elf objs/interrupt.o objs/serial.o objs/lcddrv.o objs/framebuffer.o objs/lcdlib.o objs/main.o lib/libc.a
 	${OBJCOPY} -O binary -S ${DIR_BIN}/${TARGET}_elf $@
 	${OBJDUMP} -D -m arm ${DIR_BIN}/${TARGET}_elf > ${DIR_BIN}/${TARGET}.dis
 
